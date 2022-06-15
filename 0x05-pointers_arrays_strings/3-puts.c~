@@ -1,5 +1,5 @@
 #include "main.h"
-// #include "_putchar.c"
+#include "_putchar.c"
 /**
  * _puts - prints an entire string.
  * @str: tested string
@@ -13,9 +13,9 @@ void _puts(char *str)
 
 	while (*(str + i) != '\0')
 	{
-		_putchar(*(str + i));
+		_putchars(*(str + i));
 		i++;
 	}
-	_putchar('\n');
+	_putchars('\n');
 }
 
