@@ -1,47 +1,93 @@
 #include "lists.h"
+#include <stdlib.h>
 
 /**
- * insert_nodeint_at_index - function with 3 arguments
- * @head: pointer to head pointer of first node in linked list
- * @idx: index of list
- * @n: value integer
- *
- * Description: inserts a new node at a given position
- * Return: address of the new node
- */
+ * insert_nodeint_at_index - Insert a new node at a given positiion.
+ * @head: First node address.
+ * @idx: Position of the new node to be inserted in.
+ * @n: Data of the new node.
+ * Return: Address of the new node.
+ **/
+
+
+
 listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 {
-  listint_t *temp, *cursor;
-  unsigned int count = 0;
+  listint_t *node, *tmp;
+  unsigned int i = 0;
+  unsigned int size = listint_len((*head));
 
-  if (head == NULL)
-    return (NULL);
+  node = (listint_t *) malloc(sizeof(listint_t));
+  tmp = *head;
 
-  temp = malloc(sizeof(listint_t));
-  if (temp == NULL)
-    return (NULL);
-  temp->n = n;
-  cursor = *head;
-
-  if (idx == 0)
+  if (node == NULL)
     {
-      temp->next = *head;
-      *head = temp;
-      return (*head);
+      free(NULL);
     }
 
-  while (cursor != NULL)
+  if (idx > size)
     {
-      if (count == idx - 1)
+      return NULL;
+    }
+  else
+    {
+      while ( i < idx)
 	{
-	  temp->next = cursor->next;
-	  cursor->next = temp;
+	  tmp = tmp->next;
+	  i++;
 	}
-      count++;
-      cursor = cursor->next;
+
+      node->n = n;
+      node->next = tmp->next;
+      tmp->next = node;
+
+      return node;
     }
-  if (idx > count)
-    return (NULL);
-  return (temp);
+
+}#include "lists.h"
+#include <stdlib.h>
+
+ /**
+  * insert_nodeint_at_index - Insert a new node at a given positiion.
+  * @head: First node address.
+  * @idx: Position of the new node to be inserted in.
+  * @n: Data of the new node.
+  * Return: Address of the new node.
+  **/
+
+
+
+listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
+{
+  listint_t *node, *tmp;
+  unsigned int i = 0;
+  unsigned int size = listint_len((*head));
+
+  node = (listint_t *) malloc(sizeof(listint_t));
+  tmp = *head;
+
+  if (node == NULL)
+    {
+      free(NULL);
+    }
+
+  if (idx > size)
+    {
+      return NULL;
+    }
+  else
+    {
+      while ( i < idx)
+	{
+	  tmp = tmp->next;
+	  i++;
+	}
+
+      node->n = n;
+      node->next = tmp->next;
+      tmp->next = node;
+
+      return node;
+    }
 
 }
